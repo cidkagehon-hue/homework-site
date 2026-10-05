@@ -1,0 +1,179 @@
+/* 1. Design tokens */
+:root {
+  --primary: #0f766e;
+  --link:    #0f766e;
+  --accent:  #14b8a6;
+  --bg:      #f0fdfa;
+  --card:    #ffffff;
+  --text:    #1e293b;
+  --muted:   #64748b;
+  --radius:  12px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --link:  #14b8a6;
+    --bg:    #051a0a;
+    --card:  #0b2017;
+    --text:  #d4edda;
+    --muted: #7fae8f;
+  }
+}
+
+/* 2. Reset + base */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  line-height: 1.6;
+}
+
+/* 3. Header */
+header {
+  text-align: center;
+  padding: 56px 20px 44px;
+  background: linear-gradient(135deg, #0f2a2a 0%, #0f766e 100%);
+  color: #ffffff;
+}
+header h1 { font-size: 2.2rem; margin-bottom: 6px; }
+header p  { color: #ccfbf1; }
+
+/* 4. Layout + headings */
+main { max-width: 1000px; margin: 0 auto; padding: 8px 20px 60px; }
+
+h2 {
+  color: var(--link);
+  padding: 28px 0 10px;
+  border-bottom: 3px solid var(--accent);
+  margin-bottom: 20px;
+}
+h3 { margin: 24px 0 4px; color: var(--text); }
+h4 {
+  margin: 14px 0 10px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+/* 5. Week boxes */
+.week-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+.week-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 24px;
+  font-family: inherit;
+  text-align: left;
+  color: var(--text);
+  background: var(--card);
+  border: 2px solid var(--accent);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.week-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 26px rgba(20, 184, 166, 0.25);
+}
+.week-name { font-size: 1.35rem; font-weight: 700; }
+.week-info { font-size: 0.85rem; color: var(--muted); }
+
+.week-card.empty {
+  opacity: 0.45;
+  border-style: dashed;
+  cursor: not-allowed;
+}
+.week-card.empty:hover { transform: none; box-shadow: none; }
+
+/* 6. Back button + task/topic boxes */
+.back-btn {
+  margin-top: 24px;
+  padding: 8px 18px;
+  font-family: inherit;
+  font-weight: 600;
+  color: var(--link);
+  background: transparent;
+  border: 2px solid var(--accent);
+  border-radius: 999px;
+  cursor: pointer;
+}
+.back-btn:hover { background: var(--accent); color: #ffffff; }
+
+.box-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+  gap: 10px;
+}
+.box {
+  display: block;
+  text-align: center;
+  padding: 14px 8px;
+  font-weight: 600;
+  color: var(--text);
+  background: var(--card);
+  border: 2px solid var(--accent);
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+.box:hover {
+  transform: translateY(-3px);
+  background: var(--primary);
+  color: #ffffff;
+}
+
+/* 7. Preview overlay */
+#preview-area {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.75);
+}
+#preview-area[hidden] { display: none; }
+
+.preview-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 900px;
+}
+#open-link { color: #99f6e4; font-weight: 600; text-decoration: none; }
+#open-link:hover { text-decoration: underline; }
+#close-btn {
+  padding: 8px 22px;
+  font-weight: 700;
+  color: #ffffff;
+  background: #f43f5e;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+}
+#preview-frame {
+  width: 100%;
+  max-width: 900px;
+  height: 75vh;
+  background: #ffffff;
+  border: 3px solid var(--accent);
+  border-radius: var(--radius);
+}
+
+/* 8. Footer */
+footer {
+  text-align: center;
+  padding: 24px;
+  color: var(--muted);
+  border-top: 1px solid var(--accent);
+}
