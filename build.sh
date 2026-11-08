@@ -29,7 +29,7 @@ EOF
 for w in $(seq 1 $LAST_WEEK); do
   total=$(count "week$w-*/*.html")
   if [ "$w" -eq 1 ]; then
-    echo "        <button class=\\"week-card\\" data-target=\\"week-1\\"><span class=\\"week-name\\">Group Presentation</span><span class=\\"week-info\\">Personal finance project</span></button>"
+    echo "        <button class=\"week-card\" data-target=\"week-1\"><span class=\"week-name\">Group Presentation</span><span class=\"week-info\">Personal finance project</span></button>"
     continue
   fi
   if [ "$total" -gt 0 ]; then
