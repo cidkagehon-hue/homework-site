@@ -28,6 +28,10 @@ EOF
 # ---- Level 1: week boxes ----
 for w in $(seq 1 $LAST_WEEK); do
   total=$(count "week$w-*/*.html")
+  if [ "$w" -eq 1 ]; then
+    echo "        <button class=\\"week-card\\" data-target=\\"week-1\\"><span class=\\"week-name\\">Group Presentation</span><span class=\\"week-info\\">Personal finance project</span></button>"
+    continue
+  fi
   if [ "$total" -gt 0 ]; then
     echo "        <button class=\"week-card\" data-target=\"week-$w\"><span class=\"week-name\">Week $w</span><span class=\"week-info\">$total assignments</span></button>"
   else
@@ -38,11 +42,11 @@ echo "      </div>"
 echo "    </section>"
 
 cat <<'EOF'
-    <section class="presentations" aria-labelledby="presentations-heading">
-      <h2 id="presentations-heading">Finance presentations</h2>
-      <div class="box-grid">
-        <a class="box presentation-link" href="presentations/Personal_Finance_Tracker_Redesigned_Final.pptx" download>Personal Finance Tracker</a>
-        <a class="box presentation-link" href="presentations/FINORA_Personal_Finance_Presentation.pptx" download>FINORA Personal Finance</a>
+    <section class="view" id="week-1" hidden>
+      <button class="back-btn" data-target="view-weeks">← All weeks</button>
+      <h2>Group Presentation</h2>
+      <div class="presentation-embed">
+        <iframe src="FINORA_Personal_Finance_Presentation.pdf" title="Group Presentation slides" loading="lazy"></iframe>
       </div>
     </section>
 EOF
