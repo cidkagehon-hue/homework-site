@@ -26,7 +26,7 @@ document.addEventListener('click', (e) => {
   if (nav) { showView(nav.dataset.target); return; }
 
   const box = e.target.closest('.box');
-  if (box) {
+  if (box && !box.hasAttribute('download')) {
     e.preventDefault();            // don't leave the page
     openPreview(box.dataset.src);  // show homework in the frame
     return;
